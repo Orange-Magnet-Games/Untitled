@@ -3,6 +3,7 @@ Shader "Custom/PS1Affine"
     Properties
     {
         _MainTex ("Main Texture", 2D) = "white" {}
+        _WarpFactor ("Warp Factor", Float) = 1
     }
     SubShader
     {
@@ -20,7 +21,8 @@ Shader "Custom/PS1Affine"
 			
 			TEXTURE2D(_MainTex);
 			SAMPLER(sampler_MainTex);
-
+			float _WarpFactor;
+			
 			CBUFFER_START(UnityPerMaterial)
 			float4 _MainTex_ST;
 			float4 _MainTex_TexelSize;
@@ -35,7 +37,7 @@ Shader "Custom/PS1Affine"
 			struct VertexOutput 
 			{
 				float4 positionCS	: SV_POSITION;
-				noperspective float2 uv : TEXCOORD0;
+				float2 uv : TEXCOORD0;
 			};
 		ENDHLSL
 
@@ -52,15 +54,17 @@ Shader "Custom/PS1Affine"
 				VertexOutput o;
 
 				o.positionCS = TransformObjectToHClip(i.positionOS);
-
-				o.uv = TRANSFORM_TEX(i.uv, _MainTex);
+				const float2 uv1 = TRANSFORM_TEX(i.uv, _MainTex);
+				const float2 uv2 = TRANSFORM_TEX(i.uv, _MainTex) * o.positionCS.w;
+				
+				o.uv = uv2 * _WarpFactor + (1 - _WarpFactor) * uv1;
 
 				return o;
 			}
 
 			float4 frag(VertexOutput i) : SV_Target
 			{
-				float4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
+				const float4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, (i.uv / i.positionCS.w) * _WarpFactor + (1 - _WarpFactor) * i.uv);
 				return col;
 			}
 			

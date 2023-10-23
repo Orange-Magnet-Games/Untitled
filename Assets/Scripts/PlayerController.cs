@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : PortalTraveller {
     private InputMaster input;
     private Vector2 direction;
     [SerializeField] private float speed, jumpPower, sprintSpeed, drag;

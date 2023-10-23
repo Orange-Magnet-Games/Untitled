@@ -23,10 +23,10 @@ Shader "Custom/PS1Affine"
 			SAMPLER(sampler_MainTex);
 			float _WarpFactor;
 			
-			CBUFFER_START(UnityPerMaterial)
+			CBUFFER_START(UnityPerMaterial);
 			float4 _MainTex_ST;
 			float4 _MainTex_TexelSize;
-			CBUFFER_END
+			CBUFFER_END;
 
 			struct VertexInput 
 			{

@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour {
   public InputMaster input;
   private Vector2 direction;
-  [SerializeField] private float speed, jumpPower, sprintSpeed, drag;
-  private bool sprinting, jumping;
+  [SerializeField] private float speed, jumpPower, drag, airDrag;
+  private bool jumping;
 
   public bool isGrounded;
 
@@ -30,9 +30,6 @@ public class PlayerController : MonoBehaviour {
     input.Movement.Direction.performed += ctx => OnDirection(ctx, true);
     input.Movement.Direction.canceled += ctx => OnDirection(ctx, false);
 
-    input.Movement.Sprint.performed += _ => sprinting = true;
-    input.Movement.Sprint.canceled += _ => sprinting = false;
-
     input.Movement.Jump.performed += _ => jumping = true;
     input.Movement.Jump.canceled += _ => jumping = false;
   }
@@ -55,11 +52,10 @@ public class PlayerController : MonoBehaviour {
     if (direction.magnitude >= .1f) {
       Transform objTransform = gameObject.transform;
 
-      vel += (sprinting ? sprintSpeed : speed) *
-             (objTransform.right * direction.x + objTransform.forward * direction.y);
+      vel += speed * (objTransform.right * direction.x + objTransform.forward * direction.y);
     }
 
-    Drag(ref vel, 1 - drag - (sprinting ? .1f : 0f));
+    Drag(ref vel, 1 - (isGrounded ? drag : airDrag));
 
     rb.velocity = vel;
   }
@@ -71,8 +67,10 @@ public class PlayerController : MonoBehaviour {
     jumping = false;
     isGrounded = false;
 
+    Transform objTransform = gameObject.transform;
+    
     Vector3 velocity = rb.velocity;
-    velocity = new Vector3(velocity.x, jumpPower, velocity.z);
+    velocity = new Vector3(velocity.x, jumpPower, velocity.z) + (objTransform.right * direction.x + objTransform.forward * direction.y) * (jumpPower * speed);
     rb.velocity = velocity;
   }
 

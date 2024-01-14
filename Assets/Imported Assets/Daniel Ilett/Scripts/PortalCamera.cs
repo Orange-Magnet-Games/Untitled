@@ -47,11 +47,6 @@ public class PortalCamera : MonoBehaviour
 
     void UpdateCamera(ScriptableRenderContext SRC, Camera camera)
     {
-        if (!portals[0].IsPlaced || !portals[1].IsPlaced)
-        {
-            return;
-        }
-
         if (portals[0].Renderer.isVisible)
         {
             portalCamera.targetTexture = tempTexture1;

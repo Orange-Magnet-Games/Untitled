@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
@@ -8,58 +9,51 @@ public class Portal : MonoBehaviour
     [field: SerializeField]
     public Portal OtherPortal { get; private set; }
 
-    private List<PortalableObject> portalObjects = new List<PortalableObject>();
-    public bool IsPlaced { get; private set; } = true;
+    private readonly List<PortalableObject> portalObjects = new List<PortalableObject>();
+    
     public Collider wallCollider;
 
     // Components.
     public Renderer Renderer { get; private set; }
-    private new BoxCollider collider;
 
     private void Awake()
     {
-        collider = GetComponent<BoxCollider>();
         Renderer = GetComponent<Renderer>();
     }
 
     private void Start() {
-        transform.position -= transform.forward * 0.01f;
+        // ReSharper disable once Unity.InefficientPropertyAccess
+        transform.position -= transform.forward * 0.005f;
         //gameObject.SetActive(false);
     }
 
-    private void Update()
-    {
-        Renderer.enabled = OtherPortal.IsPlaced;
+    private void Update() {
+        Renderer.enabled = true;
 
-        for (int i = 0; i < portalObjects.Count; ++i)
-        {
-            Vector3 objPos = transform.InverseTransformPoint(portalObjects[i].transform.position);
-
-            if (objPos.z > 0.0f)
-            {
-                portalObjects[i].Warp();
-            }
+        foreach (PortalableObject t in from t in portalObjects let objPos = transform.InverseTransformPoint(t.transform.position) where objPos.z > 0.0f select t) {
+            t.Warp();
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        var obj = other.GetComponent<PortalableObject>();
-        if (obj != null)
-        {
-            portalObjects.Add(obj);
-            obj.SetIsInPortal(this, OtherPortal, wallCollider);
-        }
+        PortalableObject obj = other.GetComponent<PortalableObject>();
+        
+        if (obj == null) return;
+        
+        portalObjects.Add(obj);
+        obj.SetIsInPortal(this, OtherPortal, wallCollider);
+        obj.SetIsInPortal(this, OtherPortal, OtherPortal.wallCollider);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        var obj = other.GetComponent<PortalableObject>();
+        PortalableObject obj = other.GetComponent<PortalableObject>();
 
-        if(portalObjects.Contains(obj))
-        {
-            portalObjects.Remove(obj);
-            obj.ExitPortal(wallCollider);
-        }
+        if (!portalObjects.Contains(obj)) return;
+        
+        portalObjects.Remove(obj);
+        obj.ExitPortal(OtherPortal.wallCollider);
+        obj.ExitPortal(wallCollider);
     }
 }

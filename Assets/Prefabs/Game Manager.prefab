@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7405452661142806450}
   - component: {fileID: 5642308897995162628}
   - component: {fileID: 2814899758524587509}
-  - component: {fileID: 5221089075843981993}
-  - component: {fileID: 7263331971898481316}
   - component: {fileID: 8533463061689436223}
+  - component: {fileID: 2551998935721343370}
+  - component: {fileID: 6239730278549914771}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -78,10 +78,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f6b239d882c414e998d39dc4a5f000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
-  jumpPower: 5
-  sprintSpeed: 5
+  speed: 2
+  jumpPower: 10
   drag: 0.25
+  airDrag: 0.2
   isGrounded: 1
   rb: {fileID: 0}
 --- !u!136 &2814899758524587509
@@ -107,7 +107,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &5221089075843981993
+--- !u!114 &8533463061689436223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3732875819945729243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9581fdc03f0e386459a466474b74272c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!33 &2551998935721343370
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,7 +127,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3732875819945729243}
   m_Mesh: {fileID: 0}
---- !u!23 &7263331971898481316
+--- !u!23 &6239730278549914771
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,18 +169,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8533463061689436223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3732875819945729243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9581fdc03f0e386459a466474b74272c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4309787876997625188
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,13 +261,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4726988590406460075}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071069, z: -0, w: 0.70710665}
-  m_LocalPosition: {x: 6.330002, y: -2, z: 19.649998}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4726988592218370041}
-  m_LocalEulerAnglesHint: {x: 40.257004, y: -109.864006, z: 0.003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &4726988590406460076
 Camera:
   m_ObjectHideFlags: 0
@@ -660,7 +660,7 @@ GameObject:
   - component: {fileID: 1918845204421032681}
   m_Layer: 8
   m_Name: Game Manager
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -708,6 +708,7 @@ GameObject:
   - component: {fileID: 1800425870215117222}
   - component: {fileID: 5730951285205011485}
   - component: {fileID: 44865110082021480}
+  - component: {fileID: 1068435788457907568}
   m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
@@ -758,7 +759,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8d9d6fe6a0c6a334c9e1be2605430de9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -780,3 +781,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1068435788457907568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4915586474673189594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca16f13bd8e0ef82ba04efa12b50b4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainColor: 1
+  shadowColor: 0

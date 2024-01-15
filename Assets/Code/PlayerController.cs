@@ -38,30 +38,30 @@ public class PlayerController : MonoBehaviour {
     direction = performed ? ctx.ReadValue<Vector2>() : Vector2.zero;
   }
 
-  private void Update() {
-    Move();
-    Jump();
-  }
-
-  private void Move() {
-    
-    gameObject.transform.eulerAngles = new Vector3(0, cam.transform.eulerAngles.y, 0);
-
+  private void FixedUpdate() {
     Vector3 vel = rb.velocity;
-
-    if (direction.magnitude >= .1f) {
-      Transform objTransform = gameObject.transform;
-
-      vel += speed * (objTransform.right * direction.x + objTransform.forward * direction.y);
-    }
-
+    
+    Move(ref vel);
+    Jump(ref vel);
+    
+    
     Drag(ref vel, 1 - (isGrounded ? drag : airDrag));
 
     rb.velocity = vel;
   }
 
-  private void Jump() {
+  private void Move(ref Vector3 vel) {
     
+    gameObject.transform.eulerAngles = new Vector3(0, cam.transform.eulerAngles.y, 0);
+    
+    if (!(direction.magnitude >= .1f)) return;
+    
+    Transform objTransform = gameObject.transform;
+
+    vel += (objTransform.right * direction.x + objTransform.forward * direction.y) * speed;
+  }
+
+  private void Jump(ref Vector3 vel) {
     if (!jumping || !isGrounded) return;
 
     jumping = false;
@@ -69,9 +69,7 @@ public class PlayerController : MonoBehaviour {
 
     Transform objTransform = gameObject.transform;
     
-    Vector3 velocity = rb.velocity;
-    velocity = new Vector3(velocity.x, jumpPower, velocity.z) + (objTransform.right * direction.x + objTransform.forward * direction.y) * (jumpPower * speed);
-    rb.velocity = velocity;
+    vel = new Vector3(vel.x, jumpPower, vel.z) + (objTransform.right * direction.x + objTransform.forward * direction.y) * (jumpPower * speed);
   }
 
   #region Drag

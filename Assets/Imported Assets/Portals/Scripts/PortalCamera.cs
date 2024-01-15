@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -7,8 +7,7 @@ using RenderPipeline = UnityEngine.Rendering.RenderPipelineManager;
 
 public class PortalCamera : MonoBehaviour
 {
-    [SerializeField]
-    private Portal[] portals = new Portal[2];
+    private readonly List<Portal> portals = new List<Portal>();
 
     [SerializeField]
     private Camera portalCamera;
@@ -16,23 +15,23 @@ public class PortalCamera : MonoBehaviour
     [SerializeField]
     private int iterations = 7;
 
-    private RenderTexture tempTexture1;
-    private RenderTexture tempTexture2;
+    private readonly List<RenderTexture> tempTextures = new List<RenderTexture>();
 
     private Camera mainCamera;
 
-    private void Awake()
-    {
-        mainCamera = GetComponent<Camera>();
-
-        tempTexture1 = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.ARGB32);
-        tempTexture2 = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.ARGB32);
-    }
 
     private void Start()
     {
-        portals[0].Renderer.material.mainTexture = tempTexture1;
-        portals[1].Renderer.material.mainTexture = tempTexture2;
+        mainCamera = GetComponent<Camera>();
+        
+        portals.Clear();
+        tempTextures.Clear();
+
+        foreach (Portal portal in FindObjectsByType<Portal>(FindObjectsSortMode.None)) {
+            tempTextures.Add(new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.ARGB32));
+            portal.Renderer.material.mainTexture = tempTextures.Last();
+            portals.Add(portal);
+        }
     }
 
     private void OnEnable()
@@ -45,35 +44,28 @@ public class PortalCamera : MonoBehaviour
         RenderPipeline.beginCameraRendering -= UpdateCamera;
     }
 
-    void UpdateCamera(ScriptableRenderContext SRC, Camera camera)
+    void UpdateCamera(ScriptableRenderContext src, Camera cam)
     {
-        if (portals[0].Renderer.isVisible)
-        {
-            portalCamera.targetTexture = tempTexture1;
-            for (int i = iterations - 1; i >= 0; --i)
-            {
-                RenderCamera(portals[0], portals[1], i, SRC);
-            }
-        }
-
-        if(portals[1].Renderer.isVisible)
-        {
-            portalCamera.targetTexture = tempTexture2;
-            for (int i = iterations - 1; i >= 0; --i)
-            {
-                RenderCamera(portals[1], portals[0], i, SRC);
+        for (int i = 0; i < portals.Count; i++) {
+            
+            if (!portals[i].Renderer.isVisible) continue;
+            
+            portalCamera.targetTexture = tempTextures[i];
+            for (int r = iterations - 1; r >= 0; --r) {
+                RenderCamera(portals[i], portals[i].OtherPortal, r, src);
             }
         }
     }
 
-    private void RenderCamera(Portal inPortal, Portal outPortal, int iterationID, ScriptableRenderContext SRC)
+    private void RenderCamera(Portal inPortal, Portal outPortal, int iterationID, ScriptableRenderContext src)
     {
         Transform inTransform = inPortal.transform;
         Transform outTransform = outPortal.transform;
 
         Transform cameraTransform = portalCamera.transform;
-        cameraTransform.position = transform.position;
-        cameraTransform.rotation = transform.rotation;
+        Transform tr = transform;
+        cameraTransform.position = tr.position;
+        cameraTransform.rotation = tr.rotation;
 
         for(int i = 0; i <= iterationID; ++i)
         {
@@ -94,11 +86,11 @@ public class PortalCamera : MonoBehaviour
         Vector4 clipPlaneCameraSpace =
             Matrix4x4.Transpose(Matrix4x4.Inverse(portalCamera.worldToCameraMatrix)) * clipPlaneWorldSpace;
 
-        var newMatrix = mainCamera.CalculateObliqueMatrix(clipPlaneCameraSpace);
+        Matrix4x4 newMatrix = mainCamera.CalculateObliqueMatrix(clipPlaneCameraSpace);
         portalCamera.projectionMatrix = newMatrix;
 
         // Render the camera to its render target.
-        UniversalRenderPipeline.RenderSingleCamera(SRC, portalCamera);
+        UniversalRenderPipeline.RenderSingleCamera(src, portalCamera);
 
         //RenderPipeline.SubmitRenderRequest();
     }

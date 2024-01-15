@@ -25,6 +25,5 @@ public class GroundCheck : MonoBehaviour {
     if (!other.CompareTag("Ground")) return;
     
     player.isGrounded = true;
-    player.rb.velocity = Vector3.zero;
   }
 }

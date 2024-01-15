@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
 using UnityEngine.InputSystem;
 
 public class CameraLook : MonoBehaviour {
@@ -12,6 +13,10 @@ public class CameraLook : MonoBehaviour {
     player = GameManager.instance.player;
     player.input.Camera.Look.performed += ctx => OnLook(ctx, true);
     player.input.Camera.Look.canceled += ctx => OnLook(ctx, false);
+
+    Camera cam = GetComponent<Camera>();
+    cam.targetTexture.width = Screen.width;
+    cam.targetTexture.height = Screen.height;
   }
 
   private void OnLook(InputAction.CallbackContext ctx, bool performed) {

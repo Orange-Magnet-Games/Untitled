@@ -17,9 +17,6 @@ public class GameManager : MonoBehaviour {
 
   public PlayerController player;
   public Camera mainCamera;
-
-  private void Start() {
-    mainCamera = Camera.main;
-    player = GetComponentInChildren<PlayerController>();
-  }
+  public GunController gunManager;
+  public UIManager uiManager;
 }

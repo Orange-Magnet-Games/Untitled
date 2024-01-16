@@ -6,90 +6,40 @@
   <component name="ChangeListManager">
     <list default="true" id="568e2048-a94c-44a4-9520-f4c53923e3c7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Darrel-Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Darrel-Game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/GridBox_Default.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/GridBox_Default.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/Level Mat 1.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/Level Mat 1.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/Level Mat.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/Level Mat.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/Player.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/Player.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/SkyBox.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/SkyBox.mat.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Art/UniversalRenderPipelineAsset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/UniversalRenderPipelineAsset.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/UniversalRenderPipelineAsset_Renderer.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/UniversalRenderPipelineAsset_Renderer.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/CameraLook.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/CameraLook.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/GroundCheck.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/GroundCheck.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/InputMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/InputMaster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/InputMaster.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/InputMaster.inputactions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/Halftone/Halftone.shadergraph" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Shaders/Halftone/Halftone.shadergraph" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Docs/Credits.odt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Docs/Credits.odt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Materials.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Materials/Default.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Materials/Default.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Materials/LevelGeom.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Materials/LevelGeom.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Materials/PortalOutline.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Materials/PortalOutline.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Materials/RecursivePortalMask.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Materials/RecursivePortalMask.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Materials/Skybox.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Materials/Skybox.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Models.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Models/LevelGeom.mtl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Models/LevelGeom.mtl.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Models/LevelGeom.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Models/LevelGeom.obj.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Models/portal-frame.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Models/portal-frame.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Models/portal.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Models/portal.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Shaders.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Shaders/PortalMask.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Shaders/PortalMask.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Textures.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Textures/Crosshair.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Textures/Crosshair.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Textures/Crosshair_InPortal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Textures/Crosshair_InPortal.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Textures/Crosshair_OutPortal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Art/Textures/Crosshair_OutPortal.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Prefabs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Prefabs/LevelGeom.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Prefabs/LevelGeom.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Prefabs/Portal 1.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Prefabs/Portal 1.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Prefabs/PortalPair.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Prefabs/PortalPair.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Scripts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Scripts/CameraMove.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Scripts/CameraMove.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Scripts/Portal.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Scripts/Portal.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Scripts/PortalCamera.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Scripts/PortalCamera.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Scripts/PortalPair.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Scripts/PortalPair.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Scripts/PortalableObject.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Daniel Ilett/Scripts/PortalableObject.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/gruvbox.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/gruvbox.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Includes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Includes/Lighting.hlsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Includes/Lighting.hlsl.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Subgraphs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Subgraphs/AddAdditionalLights.shadersubgraph" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Subgraphs/AddAdditionalLights.shadersubgraph.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Subgraphs/AdjustSmoothness.shadersubgraph" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Subgraphs/AdjustSmoothness.shadersubgraph.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Subgraphs/CalculateLightingRamp.shadersubgraph" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Subgraphs/CalculateLightingRamp.shadersubgraph.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Subgraphs/CalculateLights.shadersubgraph" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Subgraphs/CalculateLights.shadersubgraph.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Subgraphs/CalculateMainLight.shadersubgraph" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Subgraphs/CalculateMainLight.shadersubgraph.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Subgraphs/ToonBase.shadersubgraph" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Subgraphs/ToonBase.shadersubgraph.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Test.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Test.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Textures.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Textures/New Piskel-1.png (11).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Textures/New Piskel-1.png (11).png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Toon.shadergraph" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/Toon.shadergraph.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/ToonDithered.shadergraph" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/ToonDithered.shadergraph.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/ToonGlass.shadergraph" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/BetterToon/ToonGlass.shadergraph.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/Halftone/Includes/Lighting.hlsl" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Shaders/Halftone/Includes/Lighting.hlsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Docs/Unedited.mkv.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Game Manager.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Game Manager.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test Scene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TimeManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TimeManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,6 +161,8 @@
       <workItem from="1705250447892" duration="654000" />
       <workItem from="1705251435056" duration="15847000" />
       <workItem from="1705275570234" duration="14509000" />
+      <workItem from="1705425986201" duration="9000" />
+      <workItem from="1705426014748" duration="2166000" />
     </task>
     <servers />
   </component>

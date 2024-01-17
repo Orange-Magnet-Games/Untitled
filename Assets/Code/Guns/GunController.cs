@@ -1,28 +1,36 @@
-using System;
 using TMPro;
 using UnityEngine;
 
 public class GunController : MonoBehaviour {
   private PlayerController player;
-  private Transform cam;
+  private Transform camTransform;
+  private Camera mainCam, portalCam;
   private InputMaster input;
   
   public Gun gun;
-  [SerializeField] private GunModel activeGunModel;
+  private GunModel activeGunModel;
   [SerializeField] private MuzzleFlash muzzleFlash;
   public BulletHole bulletHole;
   [SerializeField] private ParticleSystem particles;
-  
-  private bool shooting, aimingDownSights;
-  private float shootTimer, reloadTimer;
-  private Quaternion shootRotation = Quaternion.identity, originalRotaion = Quaternion.identity;
 
-  private TMP_Text ammoText;
+  private float accuracy;
+  private bool shooting, aimingDownSights;
+  private float shootTimer, reloadTimer, fov;
+  private Quaternion shootRotation = Quaternion.identity, originalRotation = Quaternion.identity;
+  
+  private TMP_Text ammoText, ammoLeftText;
+  [SerializeField] private Transform gunTransform;
+  private Crosshair crosshair;
   private void Start() {
     gun = Instantiate(gun);
+    activeGunModel = Instantiate(gun.model, gunTransform).GetComponent<GunModel>();
+    activeGunModel.transform.localPosition = gun.gunOffset;
     
     player = GameManager.instance.player;
-    cam = GameManager.instance.mainCamera.transform;
+    mainCam = GameManager.instance.mainCamera;
+    portalCam = GameManager.instance.portalCamera;
+    camTransform = mainCam.transform;
+    
     input = player.input;
 
     input.Shooter.Shoot.performed += _ => shooting = true;
@@ -33,18 +41,22 @@ public class GunController : MonoBehaviour {
     input.Shooter.ADS.performed += _ => aimingDownSights = true;
     input.Shooter.ADS.canceled += _ => aimingDownSights = false;
 
-    originalRotaion = transform.localRotation;
+    originalRotation = transform.localRotation;
 
     ammoText = GameManager.instance.uiManager.ammoText;
+    ammoLeftText = GameManager.instance.uiManager.ammoLeftText;
+    crosshair = GameManager.instance.uiManager.crosshair;
   }
 
   private void Update() {
     shootTimer -= shootTimer >= 0 ? Time.deltaTime : 0;
     reloadTimer -= reloadTimer >= 0 ? Time.deltaTime : 0;
+    accuracy = Mathf.Clamp(accuracy - (accuracy >= gun.bestAccuracy ? Time.deltaTime * gun.reAccurracySpeed : 0), gun.bestAccuracy, aimingDownSights ? gun.worstAccuracy / 2 : gun.worstAccuracy);
+    crosshair.LineMovement = accuracy;
     
     // ReSharper disable twice Unity.PerformanceCriticalCodeInvocation
     if (shooting) Shoot();
-    //if (aimingDownSights) AimDownSights();
+    AimDownSights();
 
     Transform tr = activeGunModel.muzzle.transform;
     
@@ -54,12 +66,13 @@ public class GunController : MonoBehaviour {
     
 
     if (reloadTimer <= 0) {
-      transform.localRotation = Quaternion.Lerp(shootRotation, originalRotaion, 1 - shootTimer / (1 / gun.fireRate));
+      transform.localRotation = Quaternion.Lerp(shootRotation, originalRotation, 1 - shootTimer / (1 / gun.fireRate));
       ammoText.text = gun.ammoInMag + " / " + gun.maxAmmoInMag;
+      ammoLeftText.text = "" + gun.ammoTotal;
     }
     else {
       ammoText.text =  "R / " + gun.maxAmmoInMag;
-      transform.Rotate(new Vector3(1, 0, 0), 1000 * Time.deltaTime, Space.Self);
+      transform.Rotate(new Vector3(0, 0, 1), 1000 * Time.deltaTime, Space.Self);
     }
     
     
@@ -75,8 +88,10 @@ public class GunController : MonoBehaviour {
     muzzleFlash.gameObject.SetActive(true);
     muzzleFlash.timeShown = 1 / gun.fireRate;
     
-    if (!Physics.Raycast(cam.position, cam.forward, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("LevelGeom", "Enemy", "Portal"))) return;
-
+    if (!Physics.Raycast(camTransform.position, 
+          Quaternion.Euler(Random.Range(-accuracy, accuracy), Random.Range(-accuracy, accuracy), Random.Range(-accuracy, accuracy)) * camTransform.forward, 
+          out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("LevelGeom", "Enemy", "Portal"))) return;
+    
     if (hit.transform.CompareTag("Portal")) return;
     
     Transform ptr = particles.transform;
@@ -88,7 +103,6 @@ public class GunController : MonoBehaviour {
       ptr.position = hit.point;
       ptr.rotation = Quaternion.FromToRotation(Vector3.forward, hit.normal);
       particles.Emit(3);
-      // some more shit later
     }
     else if (hit.transform.CompareTag("Ground")) {
       Instantiate(bulletHole, hit.point + hit.normal * .001f, Quaternion.FromToRotation(Vector3.up, hit.normal));
@@ -104,16 +118,33 @@ public class GunController : MonoBehaviour {
     Transform tr = transform;
     tr.LookAt(hit.point);
     shootRotation = tr.localRotation;
+    
+    accuracy += gun.inaccuracySpeed;
   }
 
   private void OnReload() {
+    if (gun.ammoTotal <= 0) return;
+    
     reloadTimer = gun.reloadTime;
     
     gun.ammoTotal -= gun.maxAmmoInMag - gun.ammoInMag;
-    gun.ammoInMag = gun.maxAmmoInMag;
+    if (gun.ammoTotal < 0) {
+      gun.ammoInMag = gun.maxAmmoInMag + gun.ammoTotal;
+      gun.ammoTotal = 0;
+    }
+    else gun.ammoInMag = gun.maxAmmoInMag;
   }
 
-  /*private void AimDownSights() {
-    throw new NotImplementedException();
-  }*/
+  private void AimDownSights() {
+    if (!aimingDownSights || reloadTimer > 0) {
+      portalCam.fieldOfView = Mathf.Lerp(portalCam.fieldOfView, 90, gun.adsSpeed * Time.deltaTime);
+      mainCam.fieldOfView = Mathf.Lerp(mainCam.fieldOfView, 90, gun.adsSpeed * Time.deltaTime);
+      gunTransform.localPosition = Vector3.Lerp(gunTransform.localPosition, gun.hipPos, gun.adsSpeed * Time.deltaTime);
+    }
+    else {
+      portalCam.fieldOfView = Mathf.Lerp(portalCam.fieldOfView, 60, gun.adsSpeed * Time.deltaTime);
+      mainCam.fieldOfView = Mathf.Lerp(mainCam.fieldOfView, 60, gun.adsSpeed * Time.deltaTime);
+      gunTransform.localPosition = Vector3.Lerp(gunTransform.localPosition, gun.adsPos, gun.adsSpeed * Time.deltaTime);
+    }
+  }
 }

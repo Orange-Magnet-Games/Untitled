@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
 
   public PlayerController player;
   public Camera mainCamera;
+  public Camera portalCamera;
   public GunController gunManager;
   public UIManager uiManager;
 }

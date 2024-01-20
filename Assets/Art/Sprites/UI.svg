@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="1"
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
-     inkscape:zoom="2.0436167"
-     inkscape:cx="208.69863"
-     inkscape:cy="55.53879"
+     inkscape:zoom="1.0218084"
+     inkscape:cx="66.059354"
+     inkscape:cy="-76.824583"
      inkscape:window-width="2560"
      inkscape:window-height="1361"
      inkscape:window-x="0"
@@ -40,6 +40,17 @@
        id="page1"
        margin="251.67075 0 0 56.270611"
        bleed="0" />
+    <inkscape:page
+       x="26.271385"
+       y="-136.04921"
+       width="126.42716"
+       height="126.42716"
+       id="page2"
+       margin="0 0 0"
+       bleed="0"
+       inkscape:export-filename="Page 2.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
   </sodipodi:namedview>
   <defs
      id="defs1" />
@@ -52,5 +63,11 @@
        style="fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
        d="M 210.00002,296.99999 V 263.29011 H 99.465359 l -42.163883,33.70988 z"
        id="path4" />
+    <circle
+       style="fill:#ffffff;stroke-width:0.264583"
+       id="path2"
+       cx="146.78645"
+       cy="190.45448"
+       r="63.213581" />
   </g>
 </svg>

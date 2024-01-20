@@ -27,6 +27,11 @@ public class PlayerController : MonoBehaviour {
     cam = GameManager.instance.mainCamera;
     rb = GetComponent<Rigidbody>();
 
+    CameraLook camLook = cam.GetComponent<CameraLook>();
+
+    input.Camera.Look.performed += ctx => camLook.OnLook(ctx, true);
+    input.Camera.Look.canceled += ctx => camLook.OnLook(ctx, false);
+
     input.Movement.Direction.performed += ctx => OnDirection(ctx, true);
     input.Movement.Direction.canceled += ctx => OnDirection(ctx, false);
 
@@ -48,6 +53,8 @@ public class PlayerController : MonoBehaviour {
     Drag(ref vel, 1 - (isGrounded ? drag : airDrag));
 
     rb.velocity = vel;
+    rb.angularVelocity = Vector3.zero;
+    transform.eulerAngles = new Vector3(0, cam.transform.eulerAngles.y, 0);
   }
 
   private void Move(ref Vector3 vel) {
@@ -74,6 +81,7 @@ public class PlayerController : MonoBehaviour {
 
   #region Drag
 
+  // ReSharper disable once UnusedMember.Local
   private static Vector3 Drag(Vector3 vec, float drag) {
     float y = vec.y;
     vec *= drag;

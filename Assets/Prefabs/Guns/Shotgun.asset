@@ -10,21 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3cec427c08bfe21b7a775436a6113059, type: 3}
-  m_Name: SMG
+  m_Name: Shotgun
   m_EditorClassIdentifier: 
-  ammoType: 0
-  fireRate: 30
-  reloadTime: 1.5
-  maxAmmoInMag: 30
-  ammoInMag: 30
+  ammoType: 2
+  fireRate: 1.5
+  reloadTime: 2
+  maxAmmoInMag: 4
+  ammoInMag: 4
   ammoTotal: 1000
   damage: 1
   adsSpeed: 10
+  bulletsPerShot: 30
+  bestAccuracy: 2
+  worstAccuracy: 15
+  inaccuracySpeed: 0.5
+  reAccurracySpeed: 7.5
+  recoil: 1
+  model: {fileID: 3503247521626203315, guid: 6a9043c8ed17a6c6e95a6a07862fd8f5, type: 3}
   hipPos: {x: 0.2, y: 0, z: 0.2}
-  adsPos: {x: -0.35, y: 0, z: 0.2}
-  bestAccuracy: 0
-  worstAccuracy: 30
-  inaccuracySpeed: 4
-  reAccurracySpeed: 60
-  model: {fileID: 1641335658612027525, guid: 1acf58b2d438493b4b1ce072e508b919, type: 3}
-  gunOffset: {x: 0, y: -0.3, z: 0.25}
+  adsPos: {x: -0.435, y: 0, z: 0.2}
+  gunUIScale: {x: 0.125, y: 0.125, z: 0.125}

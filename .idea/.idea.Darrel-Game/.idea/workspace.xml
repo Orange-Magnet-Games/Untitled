@@ -6,53 +6,32 @@
   <component name="ChangeListManager">
     <list default="true" id="568e2048-a94c-44a4-9520-f4c53923e3c7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Darrel-Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Darrel-Game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/Bullet/Bullet.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Materials/Bullet/Bullet.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/Bullet/Casing.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Materials/Bullet/Casing.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/Gun/Gun.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Materials/Gun/Gun.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/Heart/Heart.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Materials/Heart/Heart.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/Map/Level Mat 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Materials/Map/Level Mat 1.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/Map/Level Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Materials/Map/Level Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/Map/Player.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Materials/Map/Player.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/BulletHole.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/BulletHole.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/CameraLook.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/CameraLook.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Default.physicMaterial" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Default.physicMaterial.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/EnemyController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/EnemyController.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Follow.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Follow.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/GameManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/GameManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/GroundCheck.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/GroundCheck.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Gruvboxify.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Gruvboxify.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Gun.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Gun.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/GunController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/GunController.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/GunModel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/GunModel.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Guns/SMG.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Guns/SMG.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/InputMaster.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/InputMaster.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/InputMaster.inputactions" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/InputMaster.inputactions.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/MuzzleFlash.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/MuzzleFlash.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/PlayerController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/PlayerController.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/Halftone/Halftone.shadergraph" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Shaders/Halftone/Halftone.shadergraph" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/Halftone/Subgraphs/GetMainLight.shadersubgraph" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Shaders/Halftone/Subgraphs/GetMainLight.shadersubgraph" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Spin.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Spin.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/UIManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/UIManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/Map/Player.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/Map/Player.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Guns/Gun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Guns/Gun.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Guns/GunController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Guns/GunController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Guns/MuzzleFlash.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Guns/MuzzleFlash.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Guns/SMG.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Guns/SMG.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Player/CameraLook.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Player/CameraLook.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Player/InputMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Player/InputMaster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Player/InputMaster.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Player/InputMaster.inputactions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Player/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/UI/Spin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/UI/Spin.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/UI/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/UI/UIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Docs/Credits.odt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Docs/Credits.odt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Portals/Prefabs/LevelGeom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Imported Assets/Portals/Prefabs/LevelGeom.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Game Manager.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Game Manager.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SMG.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SMG.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test Scene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,17 +45,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4f4da263c4e74801a70aef3c12ad9d0394bc00/37/fbd0628f/PhysicsDebugDraw.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e9161cad79fb4ad2ab52f4c6a5c35f87173e00/1c/19f37f10/Vector3.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e9161cad79fb4ad2ab52f4c6a5c35f87173e00/df/f65054a7/Transform.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Code/BulletHole.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Code/CameraLook.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Code/Crosshair.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Code/EnemyController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Code/Follow.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Code/Gruvboxify.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Code/Gun.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Code/GunController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Code/GunModel.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Code/MuzzleFlash.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Code/Spin.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Guns/GunFront.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Guns/GunUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@14.0.9/Runtime/XR/XRSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.9/Runtime/Passes/CopyDepthPass.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
@@ -104,7 +75,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -179,6 +150,13 @@
       <workItem from="1705426014748" duration="2166000" />
       <workItem from="1705432632106" duration="15000" />
       <workItem from="1705432653333" duration="23352000" />
+      <workItem from="1705511894510" duration="6830000" />
+      <workItem from="1705535893508" duration="7885000" />
+      <workItem from="1705551572028" duration="1693000" />
+      <workItem from="1705553604363" duration="2045000" />
+      <workItem from="1705594132696" duration="15756000" />
+      <workItem from="1705689763972" duration="12698000" />
+      <workItem from="1705714792886" duration="2787000" />
     </task>
     <servers />
   </component>
@@ -189,5 +167,9 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

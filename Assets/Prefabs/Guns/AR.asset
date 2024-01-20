@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cec427c08bfe21b7a775436a6113059, type: 3}
+  m_Name: AR
+  m_EditorClassIdentifier: 
+  ammoType: 1
+  fireRate: 0
+  reloadTime: 0
+  maxAmmoInMag: 0
+  ammoInMag: 0
+  ammoTotal: 0
+  damage: 0
+  adsSpeed: 0
+  bulletsPerShot: 0
+  bestAccuracy: 0
+  worstAccuracy: 0
+  inaccuracySpeed: 0
+  reAccurracySpeed: 0
+  recoil: 0
+  model: {fileID: 0}
+  hipPos: {x: 0, y: 0, z: 0}
+  adsPos: {x: 0, y: 0, z: 0}
+  gunOffset: {x: 0, y: 0, z: 0}
+  gunUIOffset: {x: 0, y: 0, z: 0}
+  gunUIScale: {x: 0, y: 0, z: 0}

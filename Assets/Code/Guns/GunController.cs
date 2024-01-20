@@ -1,36 +1,45 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GunController : MonoBehaviour {
   private PlayerController player;
   private Transform camTransform;
   private Camera mainCam, portalCam;
+  //private CameraLook mainCamLook;
   private InputMaster input;
   
-  public Gun gun;
+  [HideInInspector] public Gun[] guns = new Gun[2];
+  public Gun[] allPossibleGuns;
+  
+  [HideInInspector] public int activeGun;
   private GunModel activeGunModel;
   [SerializeField] private MuzzleFlash muzzleFlash;
   public BulletHole bulletHole;
   [SerializeField] private ParticleSystem particles;
-
+  private GunUI uiGuns;
+  
   private float accuracy;
   private bool shooting, aimingDownSights;
   private float shootTimer, reloadTimer, fov;
   private Quaternion shootRotation = Quaternion.identity, originalRotation = Quaternion.identity;
+  [HideInInspector] public Vector3 occlusionOffset = Vector3.zero;
   
   private TMP_Text ammoText, ammoLeftText;
   [SerializeField] private Transform gunTransform;
   private Crosshair crosshair;
+
+  [SerializeField] private int[] startingGuns = new int[2];
   private void Start() {
-    gun = Instantiate(gun);
-    activeGunModel = Instantiate(gun.model, gunTransform).GetComponent<GunModel>();
-    activeGunModel.transform.localPosition = gun.gunOffset;
+    guns[startingGuns[0]] = Instantiate(allPossibleGuns[startingGuns[0]]);
+    guns[startingGuns[1]] = Instantiate(allPossibleGuns[startingGuns[1]]);
+    activeGunModel = Instantiate(guns[activeGun].model, gunTransform).GetComponent<GunModel>();
     
     player = GameManager.instance.player;
     mainCam = GameManager.instance.mainCamera;
     portalCam = GameManager.instance.portalCamera;
     camTransform = mainCam.transform;
-    
+    //mainCamLook = mainCam.GetComponent<CameraLook>();
     input = player.input;
 
     input.Shooter.Shoot.performed += _ => shooting = true;
@@ -41,18 +50,63 @@ public class GunController : MonoBehaviour {
     input.Shooter.ADS.performed += _ => aimingDownSights = true;
     input.Shooter.ADS.canceled += _ => aimingDownSights = false;
 
+    input.Shooter.WeaponScroll.performed += SwitchWeapon;
+    
     originalRotation = transform.localRotation;
 
     ammoText = GameManager.instance.uiManager.ammoText;
     ammoLeftText = GameManager.instance.uiManager.ammoLeftText;
     crosshair = GameManager.instance.uiManager.crosshair;
+    uiGuns = GameManager.instance.uiManager.guns;
+    
+    UpdateUIWeapons();
+    
+    uiGuns.gunIndex = activeGun;
+
   }
 
+  private void SwitchWeapon(InputAction.CallbackContext ctx) {
+    
+    
+    if (reloadTimer >= 0) {
+      reloadTimer = 0;
+      guns[activeGun].ammoInMag = 0;
+    }
+    switch (activeGun) {
+      case 1 when !guns[0]: return;
+      case 1: activeGun = 0; break;
+      case 0 when !guns[1]: return;
+      case 0: activeGun = 1; break;
+    }
+    
+    uiGuns.gunIndex = activeGun;
+    
+    Destroy(activeGunModel.gameObject);
+    activeGunModel = Instantiate(guns[activeGun].model, gunTransform).GetComponent<GunModel>();
+    transform.localRotation = originalRotation;
+    gunTransform.localRotation = Quaternion.Euler(0, 0, 0);
+    gunTransform.localPosition = guns[activeGun].hipPos + occlusionOffset;
+    aimingDownSights = false;
+    
+  }
+
+  private void UpdateUIWeapons() {
+
+    for (int i = 0; i < guns.Length; i++) {
+      if (!guns[i]) continue;
+      if (uiGuns.gunPivots[i].childCount > 0) Destroy(uiGuns.gunPivots[i].GetChild(i).gameObject);
+
+      GameObject gj = Instantiate(guns[i].model, uiGuns.gunPivots[i]);
+      gj.transform.localScale = guns[i].gunUIScale;
+    }
+  }
+  
   private void Update() {
     shootTimer -= shootTimer >= 0 ? Time.deltaTime : 0;
     reloadTimer -= reloadTimer >= 0 ? Time.deltaTime : 0;
-    accuracy = Mathf.Clamp(accuracy - (accuracy >= gun.bestAccuracy ? Time.deltaTime * gun.reAccurracySpeed : 0), gun.bestAccuracy, aimingDownSights ? gun.worstAccuracy / 2 : gun.worstAccuracy);
+    accuracy = Mathf.Clamp(accuracy - (accuracy >= guns[activeGun].bestAccuracy ? Time.deltaTime * guns[activeGun].reAccurracySpeed : 0), guns[activeGun].bestAccuracy, aimingDownSights ? guns[activeGun].worstAccuracy / 2 : guns[activeGun].worstAccuracy);
     crosshair.LineMovement = accuracy;
+
     
     // ReSharper disable twice Unity.PerformanceCriticalCodeInvocation
     if (shooting) Shoot();
@@ -61,90 +115,104 @@ public class GunController : MonoBehaviour {
     Transform tr = activeGunModel.muzzle.transform;
     
     muzzleFlash.transform.SetPositionAndRotation(tr.position, tr.rotation);
-    muzzleFlash.transform.Rotate(0, shootTimer / (1 / gun.fireRate) * 360, 0, Space.Self);
+    muzzleFlash.transform.Rotate(0, shootTimer / (1 / guns[activeGun].fireRate) * 360, 0, Space.Self);
 
     
 
     if (reloadTimer <= 0) {
-      transform.localRotation = Quaternion.Lerp(shootRotation, originalRotation, 1 - shootTimer / (1 / gun.fireRate));
-      ammoText.text = gun.ammoInMag + " / " + gun.maxAmmoInMag;
-      ammoLeftText.text = "" + gun.ammoTotal;
+      transform.localRotation = Quaternion.Lerp(shootRotation, originalRotation, 1 - shootTimer / (1 / guns[activeGun].fireRate));
+      ammoText.text = guns[activeGun].ammoInMag + " / " + guns[activeGun].maxAmmoInMag;
+      ammoLeftText.text = "" + guns[activeGun].ammoTotal;
     }
     else {
-      ammoText.text =  "R / " + gun.maxAmmoInMag;
-      transform.Rotate(new Vector3(0, 0, 1), 1000 * Time.deltaTime, Space.Self);
+      ammoText.text =  "R / " + guns[activeGun].maxAmmoInMag;
+      switch (true) {
+        case true when reloadTimer > guns[activeGun].reloadTime * 0.75f: {
+          gunTransform.localRotation = Quaternion.Lerp(gunTransform.localRotation, Quaternion.Euler(-90, 0, 0), 10 * Time.deltaTime / guns[activeGun].reloadTime);
+          gunTransform.localPosition = Vector3.Lerp(gunTransform.localPosition, guns[activeGun].hipPos + Vector3.forward * .5f + occlusionOffset, 10 * guns[activeGun].reloadTime * Time.deltaTime / guns[activeGun].reloadTime);
+          break;
+        }
+        case true when reloadTimer > guns[activeGun].reloadTime * 0.5f: {
+          gunTransform.localPosition = Vector3.Lerp(gunTransform.localPosition, guns[activeGun].hipPos + Vector3.down * .5f + Vector3.forward * .5f + occlusionOffset, 10 * Time.deltaTime / guns[activeGun].reloadTime);
+          break;
+        }
+        case true when reloadTimer > guns[activeGun].reloadTime * 0.25f: {
+          gunTransform.localPosition = Vector3.Lerp(gunTransform.localPosition, guns[activeGun].hipPos + Vector3.forward * .5f, 10 * Time.deltaTime / guns[activeGun].reloadTime);
+          break;
+        }
+        case true when reloadTimer > 0: {
+          gunTransform.localRotation = Quaternion.Lerp(gunTransform.localRotation, Quaternion.Euler(0, 0, 0), 10 * Time.deltaTime / guns[activeGun].reloadTime);
+          gunTransform.localPosition = Vector3.Lerp(gunTransform.localPosition, guns[activeGun].hipPos + occlusionOffset, 10 * Time.deltaTime / guns[activeGun].reloadTime);
+          break;
+        }
+      }
     }
-    
-    
   }
 
   private void Shoot() {
     if(reloadTimer >= 0 | shootTimer >= 0) return;
-    if (gun.ammoInMag <= 0) { OnReload(); return; }
-    gun.ammoInMag--;
+    if (guns[activeGun].ammoInMag <= 0) { OnReload(); return; }
+    guns[activeGun].ammoInMag--;
     
-    shootTimer = 1 / gun.fireRate; // convert rps to time between rounds
+    shootTimer = 1 / guns[activeGun].fireRate; // convert rps to time between rounds
     
     muzzleFlash.gameObject.SetActive(true);
-    muzzleFlash.timeShown = 1 / gun.fireRate;
-    
-    if (!Physics.Raycast(camTransform.position, 
-          Quaternion.Euler(Random.Range(-accuracy, accuracy), Random.Range(-accuracy, accuracy), Random.Range(-accuracy, accuracy)) * camTransform.forward, 
-          out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("LevelGeom", "Enemy", "Portal"))) return;
-    
-    if (hit.transform.CompareTag("Portal")) return;
-    
-    Transform ptr = particles.transform;
-    
-    if (hit.transform.CompareTag("Enemy")) { // hit enemy
-      EnemyController enemy = hit.transform.GetComponent<EnemyController>();
-      enemy.TakeDamage(gun.damage);
+    for (int i = 0; i < guns[activeGun].bulletsPerShot; i++) {
+      if (!Physics.Raycast(camTransform.position,
+            Quaternion.Euler(Random.Range(-accuracy, accuracy), Random.Range(-accuracy, accuracy), Random.Range(-accuracy, accuracy)) * camTransform.forward,
+            out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("LevelGeom", "Enemy", "Portal"))) continue;
       
-      ptr.position = hit.point;
-      ptr.rotation = Quaternion.FromToRotation(Vector3.forward, hit.normal);
-      particles.Emit(3);
+      Transform tr = transform;
+      tr.LookAt(hit.point);
+      shootRotation = tr.localRotation;
+      
+      accuracy += guns[activeGun].inaccuracySpeed;
+      camTransform.eulerAngles += new Vector3(-guns[activeGun].recoil * (aimingDownSights ? 0.5f : 1), 0, 0);
+      
+      if (hit.transform.CompareTag("Portal")) continue;
+
+      Transform ptr = particles.transform;
+
+      if (hit.transform.CompareTag("Enemy")) { // hit enemy
+        EnemyController enemy = hit.transform.GetComponent<EnemyController>();
+        enemy.TakeDamage(guns[activeGun].damage);
+
+        ptr.position = hit.point;
+        ptr.rotation = Quaternion.FromToRotation(Vector3.forward, hit.normal);
+        particles.Emit(3);
+      }
+      else if (hit.transform.CompareTag("Ground")) {
+        Instantiate(bulletHole, hit.point + hit.normal * .001f, Quaternion.FromToRotation(Vector3.up, hit.normal));
+        ptr.position = hit.point;
+        ptr.rotation = Quaternion.FromToRotation(Vector3.forward, hit.normal);
+        particles.Emit(3);
+      }
     }
-    else if (hit.transform.CompareTag("Ground")) {
-      Instantiate(bulletHole, hit.point + hit.normal * .001f, Quaternion.FromToRotation(Vector3.up, hit.normal));
-      ptr.position = hit.point;
-      ptr.rotation = Quaternion.FromToRotation(Vector3.forward, hit.normal);
-      particles.Emit(3);
-    }
-    
-    
-    
-    
-    
-    Transform tr = transform;
-    tr.LookAt(hit.point);
-    shootRotation = tr.localRotation;
-    
-    accuracy += gun.inaccuracySpeed;
   }
 
   private void OnReload() {
-    if (gun.ammoTotal <= 0) return;
+    if (guns[activeGun].ammoTotal <= 0 || reloadTimer >= 0 || guns[activeGun].ammoInMag >= guns[activeGun].maxAmmoInMag) return;
     
-    reloadTimer = gun.reloadTime;
+    reloadTimer = guns[activeGun].reloadTime;
     
-    gun.ammoTotal -= gun.maxAmmoInMag - gun.ammoInMag;
-    if (gun.ammoTotal < 0) {
-      gun.ammoInMag = gun.maxAmmoInMag + gun.ammoTotal;
-      gun.ammoTotal = 0;
+    guns[activeGun].ammoTotal -= guns[activeGun].maxAmmoInMag - guns[activeGun].ammoInMag;
+    if (guns[activeGun].ammoTotal < 0) {
+      guns[activeGun].ammoInMag = guns[activeGun].maxAmmoInMag + guns[activeGun].ammoTotal;
+      guns[activeGun].ammoTotal = 0;
     }
-    else gun.ammoInMag = gun.maxAmmoInMag;
+    else guns[activeGun].ammoInMag = guns[activeGun].maxAmmoInMag;
   }
 
   private void AimDownSights() {
     if (!aimingDownSights || reloadTimer > 0) {
-      portalCam.fieldOfView = Mathf.Lerp(portalCam.fieldOfView, 90, gun.adsSpeed * Time.deltaTime);
-      mainCam.fieldOfView = Mathf.Lerp(mainCam.fieldOfView, 90, gun.adsSpeed * Time.deltaTime);
-      gunTransform.localPosition = Vector3.Lerp(gunTransform.localPosition, gun.hipPos, gun.adsSpeed * Time.deltaTime);
+      portalCam.fieldOfView = Mathf.Lerp(portalCam.fieldOfView, 90, guns[activeGun].adsSpeed * Time.deltaTime);
+      mainCam.fieldOfView = Mathf.Lerp(mainCam.fieldOfView, 90, guns[activeGun].adsSpeed * Time.deltaTime);
+      gunTransform.localPosition = Vector3.Lerp(gunTransform.localPosition, guns[activeGun].hipPos + occlusionOffset, guns[activeGun].adsSpeed * Time.deltaTime);
     }
     else {
-      portalCam.fieldOfView = Mathf.Lerp(portalCam.fieldOfView, 60, gun.adsSpeed * Time.deltaTime);
-      mainCam.fieldOfView = Mathf.Lerp(mainCam.fieldOfView, 60, gun.adsSpeed * Time.deltaTime);
-      gunTransform.localPosition = Vector3.Lerp(gunTransform.localPosition, gun.adsPos, gun.adsSpeed * Time.deltaTime);
+      portalCam.fieldOfView = Mathf.Lerp(portalCam.fieldOfView, 60, guns[activeGun].adsSpeed * Time.deltaTime);
+      mainCam.fieldOfView = Mathf.Lerp(mainCam.fieldOfView, 60, guns[activeGun].adsSpeed * Time.deltaTime);
+      gunTransform.localPosition = Vector3.Lerp(gunTransform.localPosition, guns[activeGun].adsPos + occlusionOffset, guns[activeGun].adsSpeed * Time.deltaTime);
     }
   }
 }

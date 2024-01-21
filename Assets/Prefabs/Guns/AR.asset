@@ -12,23 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cec427c08bfe21b7a775436a6113059, type: 3}
   m_Name: AR
   m_EditorClassIdentifier: 
-  ammoType: 1
-  fireRate: 0
-  reloadTime: 0
-  maxAmmoInMag: 0
-  ammoInMag: 0
-  ammoTotal: 0
-  damage: 0
-  adsSpeed: 0
-  bulletsPerShot: 0
+  fireRate: 15
+  reloadTime: 1.5
+  damage: 3
+  adsSpeed: 20
+  bulletsPerShot: 1
+  recoil: 10
   bestAccuracy: 0
-  worstAccuracy: 0
-  inaccuracySpeed: 0
-  reAccurracySpeed: 0
-  recoil: 0
-  model: {fileID: 0}
-  hipPos: {x: 0, y: 0, z: 0}
-  adsPos: {x: 0, y: 0, z: 0}
-  gunOffset: {x: 0, y: 0, z: 0}
-  gunUIOffset: {x: 0, y: 0, z: 0}
-  gunUIScale: {x: 0, y: 0, z: 0}
+  worstAccuracy: 30
+  inaccuracySpeed: 7.5
+  reAccurracySpeed: 60
+  ammoType: 1
+  maxAmmoInMag: 15
+  ammoInMag: 15
+  ammoTotal: 1000
+  model: {fileID: 2062253702599980995, guid: 1184ba69b524d7148b5abdffc021c383, type: 3}
+  hipPos: {x: 0, y: 0, z: 0.25}
+  adsPos: {x: -0.34, y: 0, z: 0.25}
+  gunUIScale: {x: 2, y: 2, z: 2}

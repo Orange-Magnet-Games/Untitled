@@ -12,21 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cec427c08bfe21b7a775436a6113059, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  ammoType: 4
   fireRate: 5
   reloadTime: 1
-  maxAmmoInMag: 6
-  ammoInMag: 6
-  ammoTotal: 1000
   damage: 3
   adsSpeed: 20
   bulletsPerShot: 1
+  recoil: 10
   bestAccuracy: 0
   worstAccuracy: 20
   inaccuracySpeed: 7.5
   reAccurracySpeed: 30
-  recoil: 10
+  ammoType: 4
+  maxAmmoInMag: 6
+  ammoInMag: 6
+  ammoTotal: 1000
   model: {fileID: 1480790989330807512, guid: 1bcca8cfe2c20793db0215fb029452c1, type: 3}
   hipPos: {x: 0, y: 0.15, z: 0.35}
-  adsPos: {x: -0.33, y: 0.15, z: 0.35}
-  gunUIScale: {x: 3, y: 3, z: 3}
+  adsPos: {x: -0.34, y: 0.15, z: 0.35}
+  gunUIScale: {x: 4, y: 4, z: 4}

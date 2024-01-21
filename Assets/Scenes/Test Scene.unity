@@ -841,7 +841,7 @@ PrefabInstance:
     - target: {fileID: 5870337771658133543, guid: be1c87aa377705f4c9524abc73bed8e4,
         type: 3}
       propertyPath: allPossibleGuns.Array.size
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5870337771658133543, guid: be1c87aa377705f4c9524abc73bed8e4,
         type: 3}
@@ -851,7 +851,7 @@ PrefabInstance:
     - target: {fileID: 5870337771658133543, guid: be1c87aa377705f4c9524abc73bed8e4,
         type: 3}
       propertyPath: startingGuns.Array.data[1]
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5870337771658133543, guid: be1c87aa377705f4c9524abc73bed8e4,
         type: 3}
@@ -870,6 +870,18 @@ PrefabInstance:
       propertyPath: allPossibleGuns.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: eb4dff850ea4f6196b0bc1698d2c66d5,
+        type: 2}
+    - target: {fileID: 5870337771658133543, guid: be1c87aa377705f4c9524abc73bed8e4,
+        type: 3}
+      propertyPath: allPossibleGuns.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8ee91573841fac346ae490860b180a24,
+        type: 2}
+    - target: {fileID: 5870337771658133543, guid: be1c87aa377705f4c9524abc73bed8e4,
+        type: 3}
+      propertyPath: allPossibleGuns.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1586b5035d158f57997055d25ffa88c3,
         type: 2}
     - target: {fileID: 6680156138690922478, guid: be1c87aa377705f4c9524abc73bed8e4,
         type: 3}

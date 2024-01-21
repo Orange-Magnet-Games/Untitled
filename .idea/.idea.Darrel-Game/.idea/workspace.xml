@@ -6,30 +6,35 @@
   <component name="ChangeListManager">
     <list default="true" id="568e2048-a94c-44a4-9520-f4c53923e3c7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Darrel-Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Darrel-Game/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/Gun/Gun.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Materials/Gun/Gun.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/Map/Level Mat 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Materials/Map/Level Mat 1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/Map/Level Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Materials/Map/Level Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/Map/Player.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Materials/Map/Player.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Sprites/UI.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Sprites/UI.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Guns/Gun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Guns/Gun.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Code/Guns/GunController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Guns/GunController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Guns/MuzzleFlash.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Guns/MuzzleFlash.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Guns/SMG.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Guns/SMG.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Player/CameraLook.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Player/CameraLook.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Player/InputMaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Player/InputMaster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Player/InputMaster.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Player/InputMaster.inputactions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Player/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/UI/Spin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/UI/Spin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/UI/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/UI/UIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/Halftone.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/Halftone/Halftone.shadergraph" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/Halftone/Halftone.shadergraph.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/Halftone/Includes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/Halftone/Includes/Lighting.hlsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/Halftone/Includes/Lighting.hlsl.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/Halftone/Subgraphs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/Halftone/Subgraphs/GetMainLight.shadersubgraph" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Shaders/Halftone/Subgraphs/GetMainLight.shadersubgraph.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Docs/Credits.odt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Docs/Credits.odt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Portals/Prefabs/LevelGeom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Imported Assets/Portals/Prefabs/LevelGeom.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Game Manager.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Game Manager.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SMG.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SMG.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Bullet Decal.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Bullet Decal/bullet_hole.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Bullet Decal/bullet_hole.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Pistol.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Pistol/Kimber K6S.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Pistol/Kimber K6S.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/SMG.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/SMG/source.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/SMG/source/pompe_low.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/SMG/source/pompe_low.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Shotgun.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Shotgun/canonx3.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Imported Assets/Shotgun/canonx3.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/AR.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/AR.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/Pistol.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/Pistol.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/Sniper.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/Sniper.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test Scene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" afterDir="false" />
     </list>
@@ -87,6 +92,14 @@
   }
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Builds/Linux.x86_64" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Builds" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="$USER_HOME$/Unity/Hub/Editor/2022.3.11f1/Editor/Unity" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath $PROJECT_DIR$ -debugCodeOptimization" />
@@ -157,6 +170,10 @@
       <workItem from="1705594132696" duration="15756000" />
       <workItem from="1705689763972" duration="12698000" />
       <workItem from="1705714792886" duration="2787000" />
+      <workItem from="1705781160332" duration="1601000" />
+      <workItem from="1705797659828" duration="626000" />
+      <workItem from="1705799098482" duration="628000" />
+      <workItem from="1705800109428" duration="294000" />
     </task>
     <servers />
   </component>

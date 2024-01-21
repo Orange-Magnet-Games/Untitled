@@ -11,21 +11,23 @@ public class Gun : ScriptableObject {
         GRENADE_POUCH
     }
     
-    public AmmoType ammoType;
-    [Tooltip("In rounds per second")] public float  fireRate;
+    [Tooltip("In rounds per second"), Header("Stats")] public float  fireRate;
     public float reloadTime;
-    public int maxAmmoInMag, ammoInMag, ammoTotal, damage;
+    public int damage;
     public float adsSpeed;
     public float bulletsPerShot;
+    public float recoil;
     
-    
-    [Tooltip("In degrees of deviation from center")] public float bestAccuracy, worstAccuracy;
+    [Tooltip("In degrees of deviation from center"), Header("Accuracy")] public float bestAccuracy;
+    [Tooltip("In degrees of deviation from center")] public float worstAccuracy;
     [Tooltip("In degrees per bullet")] public float inaccuracySpeed;
     // ReSharper disable once IdentifierTypo
     [Tooltip("In degrees per second")] public float reAccurracySpeed;
-    public float recoil;
-    public GameObject model;
     
+    [Header("Ammo")] public AmmoType ammoType;
+    public int maxAmmoInMag, ammoInMag, ammoTotal;
+    
+    [Header("Visual")] public GameObject model;
     public Vector3 hipPos, adsPos;
     public Vector3 gunUIScale;
 }

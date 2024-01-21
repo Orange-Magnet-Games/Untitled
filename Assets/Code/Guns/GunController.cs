@@ -31,8 +31,8 @@ public class GunController : MonoBehaviour {
 
   [SerializeField] private int[] startingGuns = new int[2];
   private void Start() {
-    guns[startingGuns[0]] = Instantiate(allPossibleGuns[startingGuns[0]]);
-    guns[startingGuns[1]] = Instantiate(allPossibleGuns[startingGuns[1]]);
+    guns[0] = Instantiate(allPossibleGuns[startingGuns[0]]);
+    guns[1] = Instantiate(allPossibleGuns[startingGuns[1]]);
     activeGunModel = Instantiate(guns[activeGun].model, gunTransform).GetComponent<GunModel>();
     
     player = GameManager.instance.player;
@@ -113,9 +113,11 @@ public class GunController : MonoBehaviour {
     AimDownSights();
 
     Transform tr = activeGunModel.muzzle.transform;
+    Transform mtr = muzzleFlash.transform;
     
-    muzzleFlash.transform.SetPositionAndRotation(tr.position, tr.rotation);
-    muzzleFlash.transform.Rotate(0, shootTimer / (1 / guns[activeGun].fireRate) * 360, 0, Space.Self);
+    mtr.SetPositionAndRotation(tr.position, tr.rotation);
+    mtr.Rotate(0, shootTimer / (1 / guns[activeGun].fireRate) * 360, 0, Space.Self);
+    mtr.localScale = tr.localScale;
 
     
 
@@ -153,8 +155,8 @@ public class GunController : MonoBehaviour {
     if(reloadTimer >= 0 | shootTimer >= 0) return;
     if (guns[activeGun].ammoInMag <= 0) { OnReload(); return; }
     guns[activeGun].ammoInMag--;
-    
-    shootTimer = 1 / guns[activeGun].fireRate; // convert rps to time between rounds
+
+    shootTimer = 1 / guns[activeGun].fireRate * (aimingDownSights ? 1.5f : 1f); // convert rps to time between rounds
     
     muzzleFlash.gameObject.SetActive(true);
     for (int i = 0; i < guns[activeGun].bulletsPerShot; i++) {

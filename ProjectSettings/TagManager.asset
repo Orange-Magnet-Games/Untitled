@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Portal
   - Ground
   - Enemy
   layers:
@@ -18,8 +17,8 @@ TagManager:
   - Main Camera
   - Player
   - LevelGeom
-  - Portal
   - 
+  - EnemyBody
   - Enemy
   - 
   - 

@@ -1,7 +1,6 @@
 using UnityEngine;
 
 public class MuzzleFlash : MonoBehaviour {
-
   public float timeShown;
   private float timer;
   private void OnEnable() {

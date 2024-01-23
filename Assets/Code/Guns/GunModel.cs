@@ -1,5 +1,5 @@
 using UnityEngine;
 
 public class GunModel : MonoBehaviour {
-    public Transform muzzle;
+  public Transform muzzle;
 }

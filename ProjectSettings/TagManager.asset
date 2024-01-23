@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Enemy
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - 
   - EnemyBody
   - Enemy
-  - 
-  - 
+  - Projectile
+  - Collectible
   - 
   - 
   - 

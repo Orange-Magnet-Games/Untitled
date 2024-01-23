@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class GunController : MonoBehaviour {
   private PlayerController player;
@@ -19,6 +18,9 @@ public class GunController : MonoBehaviour {
   public BulletHole bulletHole;
   [SerializeField] private ParticleSystem particles;
   private GunUI uiGuns;
+
+  [SerializeField] private float pickupRange;
+  
   
   private float accuracy;
   private bool shooting, aimingDownSights;
@@ -32,8 +34,8 @@ public class GunController : MonoBehaviour {
 
   [SerializeField] private int[] startingGuns = new int[2];
   private void Start() {
-    guns[0] = Instantiate(allPossibleGuns[startingGuns[0]]);
-    guns[1] = Instantiate(allPossibleGuns[startingGuns[1]]);
+    for (int i = 0; i < 2; i++) if (startingGuns[i] > -1) { guns[i] = Instantiate(allPossibleGuns[startingGuns[i]]); activeGun = i; }
+    
     activeGunModel = Instantiate(guns[activeGun].model, gunTransform).GetComponent<GunModel>();
     
     player = GameManager.instance.player;
@@ -51,7 +53,9 @@ public class GunController : MonoBehaviour {
     input.Shooter.ADS.performed += _ => aimingDownSights = true;
     input.Shooter.ADS.canceled += _ => aimingDownSights = false;
 
-    input.Shooter.WeaponScroll.performed += SwitchWeapon;
+    input.Shooter.PickUp.performed += _ => GetWeapon();
+
+    input.Shooter.WeaponScroll.performed += _ => SwitchWeapon();
     
     originalRotation = transform.localRotation;
 
@@ -66,7 +70,27 @@ public class GunController : MonoBehaviour {
 
   }
 
-  private void SwitchWeapon(InputAction.CallbackContext ctx) {
+  private void GetWeapon() {
+    Debug.DrawRay(camTransform.position, camTransform.forward * pickupRange, Color.red, 10);
+    if (!Physics.Raycast(camTransform.position, camTransform.forward, out RaycastHit hit, pickupRange, LayerMask.GetMask("Collectible"))) return;
+    if (!hit.transform.TryGetComponent(out Pickup pickup)) return;
+    
+    if (!guns[1]) {
+      guns[1] = Instantiate(allPossibleGuns[pickup.gun]);
+      guns[1].ammoTotal = pickup.ammoInGun - guns[1].maxAmmoInMag;
+      guns[1].ammoInMag = guns[1].maxAmmoInMag;
+    }
+    else {
+      guns[activeGun] = Instantiate(allPossibleGuns[pickup.gun]);
+      guns[activeGun].ammoTotal = pickup.ammoInGun - guns[activeGun].maxAmmoInMag;
+      guns[activeGun].ammoInMag = guns[activeGun].maxAmmoInMag;
+    }
+    Destroy(pickup.gameObject);
+    SwitchWeapon();
+    SwitchWeapon();
+    UpdateUIWeapons();
+  }
+  private void SwitchWeapon() {
     
     
     if (reloadTimer >= 0) {
@@ -95,7 +119,7 @@ public class GunController : MonoBehaviour {
 
     for (int i = 0; i < guns.Length; i++) {
       if (!guns[i]) continue;
-      if (uiGuns.gunPivots[i].childCount > 0) Destroy(uiGuns.gunPivots[i].GetChild(i).gameObject);
+      foreach(Transform child in uiGuns.gunPivots[i].transform) Destroy(child.gameObject);
 
       GameObject gj = Instantiate(guns[i].model, uiGuns.gunPivots[i]);
       gj.transform.localScale = guns[i].gunUIScale;
@@ -112,16 +136,19 @@ public class GunController : MonoBehaviour {
     // ReSharper disable twice Unity.PerformanceCriticalCodeInvocation
     if (shooting) Shoot();
     AimDownSights();
+    
+    PositionGun();
+  }
 
+  private void PositionGun() {
+    
     Transform tr = activeGunModel.muzzle.transform;
     Transform mtr = muzzleFlash.transform;
     
     mtr.SetPositionAndRotation(tr.position, tr.rotation);
     mtr.Rotate(0, shootTimer * 1000, 0, Space.Self);
     mtr.localScale = tr.localScale;
-
     
-
     if (reloadTimer <= 0) {
       transform.localRotation = Quaternion.Lerp(shootRotation, originalRotation, 1 - shootTimer / (1 / guns[activeGun].fireRate));
       ammoText.text = guns[activeGun].ammoInMag + " / " + guns[activeGun].maxAmmoInMag;
@@ -165,36 +192,39 @@ public class GunController : MonoBehaviour {
     
     
     for (int i = 0; i < guns[activeGun].bulletsPerShot; i++) {
-      if (!Physics.Raycast(camTransform.position, Quaternion.Euler(new Vector3(Random.Range(-accuracy, accuracy), Random.Range(-accuracy, accuracy), Random.Range(-accuracy, accuracy))) * camTransform.forward, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("LevelGeom", "EnemyBody"))) {
+      if (Physics.Raycast(camTransform.position, Quaternion.Euler(new Vector3(Random.Range(-accuracy, accuracy), Random.Range(-accuracy, accuracy), Random.Range(-accuracy, accuracy))) * camTransform.forward, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("LevelGeom", "EnemyBody"))) {
         //camTransform.eulerAngles += new Vector3(-guns[activeGun].recoil * (aimingDownSights ? 0.5f : 1), 0, 0);
+        tr.LookAt(hit.point);
+        tr.eulerAngles += new Vector3(-guns[activeGun].recoil * guns[activeGun].bulletsPerShot, 0, 0);
+        shootRotation = tr.localRotation;
+
+        Transform ptr = particles.transform;
+      
+
+        if (hit.transform.CompareTag("Enemy")) { // hit enemy
+          EnemyPartIdentifier enemy = hit.transform.GetComponent<EnemyPartIdentifier>();
+          enemy.TakeDamage(guns[activeGun].damage);
+
+          ptr.position = hit.point;
+          ptr.rotation = Quaternion.FromToRotation(Vector3.forward, hit.normal);
+          particles.Emit(3);
+        }
+        else if (hit.transform.CompareTag("Ground")) {
+          Instantiate(bulletHole, hit.point + hit.normal * .001f, Quaternion.FromToRotation(Vector3.up, hit.normal));
+          ptr.position = hit.point;
+          ptr.rotation = Quaternion.FromToRotation(Vector3.forward, hit.normal);
+          particles.Emit(3);
+        }
+        accuracy += guns[activeGun].inaccuracySpeed;
+      }
+      else {
         tr.eulerAngles += new Vector3(-guns[activeGun].recoil, 0, 0);
         shootRotation = tr.localRotation;
-        continue;
+        accuracy += guns[activeGun].inaccuracySpeed;
       }
       
-      tr.LookAt(hit.point);
-      tr.eulerAngles += new Vector3(-guns[activeGun].recoil * guns[activeGun].bulletsPerShot, 0, 0);
-      shootRotation = tr.localRotation;
-
-      Transform ptr = particles.transform;
       
-
-      if (hit.transform.CompareTag("Enemy")) { // hit enemy
-        EnemyPartIdentifier enemy = hit.transform.GetComponent<EnemyPartIdentifier>();
-        enemy.TakeDamage(guns[activeGun].damage);
-
-        ptr.position = hit.point;
-        ptr.rotation = Quaternion.FromToRotation(Vector3.forward, hit.normal);
-        particles.Emit(3);
-      }
-      else if (hit.transform.CompareTag("Ground")) {
-        Instantiate(bulletHole, hit.point + hit.normal * .001f, Quaternion.FromToRotation(Vector3.up, hit.normal));
-        ptr.position = hit.point;
-        ptr.rotation = Quaternion.FromToRotation(Vector3.forward, hit.normal);
-        particles.Emit(3);
-      }
       
-      accuracy += guns[activeGun].inaccuracySpeed;
     }
 
     Vector3 camAngles = camTransform.eulerAngles;
@@ -226,7 +256,7 @@ public class GunController : MonoBehaviour {
     else {
       portalCam.fieldOfView = Mathf.Lerp(portalCam.fieldOfView, 60, guns[activeGun].adsSpeed * Time.deltaTime);
       mainCam.fieldOfView = Mathf.Lerp(mainCam.fieldOfView, 60, guns[activeGun].adsSpeed * Time.deltaTime);
-      gunCam.fieldOfView = Mathf.Lerp(gunCam.fieldOfView, 90, guns[activeGun].adsSpeed * Time.deltaTime);
+      gunCam.fieldOfView = Mathf.Lerp(gunCam.fieldOfView, 60, guns[activeGun].adsSpeed * Time.deltaTime);
       gunTransform.localPosition = Vector3.Lerp(gunTransform.localPosition, guns[activeGun].adsPos + occlusionOffset, guns[activeGun].adsSpeed * Time.deltaTime);
     }
   }

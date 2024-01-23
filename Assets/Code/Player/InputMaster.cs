@@ -182,6 +182,15 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pick Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""c48d54db-4537-4ef9-9779-46f29643048a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -228,6 +237,17 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                     ""action"": ""WeaponScroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""72523eeb-099e-436c-b9e4-9c98742f977e"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""M&K"",
+                    ""action"": ""Pick Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -264,6 +284,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         m_Shooter_Shoot = m_Shooter.FindAction("Shoot", throwIfNotFound: true);
         m_Shooter_ADS = m_Shooter.FindAction("ADS", throwIfNotFound: true);
         m_Shooter_WeaponScroll = m_Shooter.FindAction("WeaponScroll", throwIfNotFound: true);
+        m_Shooter_PickUp = m_Shooter.FindAction("Pick Up", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -429,6 +450,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
     private readonly InputAction m_Shooter_Shoot;
     private readonly InputAction m_Shooter_ADS;
     private readonly InputAction m_Shooter_WeaponScroll;
+    private readonly InputAction m_Shooter_PickUp;
     public struct ShooterActions
     {
         private @InputMaster m_Wrapper;
@@ -437,6 +459,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Shooter_Shoot;
         public InputAction @ADS => m_Wrapper.m_Shooter_ADS;
         public InputAction @WeaponScroll => m_Wrapper.m_Shooter_WeaponScroll;
+        public InputAction @PickUp => m_Wrapper.m_Shooter_PickUp;
         public InputActionMap Get() { return m_Wrapper.m_Shooter; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -458,6 +481,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
             @WeaponScroll.started += instance.OnWeaponScroll;
             @WeaponScroll.performed += instance.OnWeaponScroll;
             @WeaponScroll.canceled += instance.OnWeaponScroll;
+            @PickUp.started += instance.OnPickUp;
+            @PickUp.performed += instance.OnPickUp;
+            @PickUp.canceled += instance.OnPickUp;
         }
 
         private void UnregisterCallbacks(IShooterActions instance)
@@ -474,6 +500,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
             @WeaponScroll.started -= instance.OnWeaponScroll;
             @WeaponScroll.performed -= instance.OnWeaponScroll;
             @WeaponScroll.canceled -= instance.OnWeaponScroll;
+            @PickUp.started -= instance.OnPickUp;
+            @PickUp.performed -= instance.OnPickUp;
+            @PickUp.canceled -= instance.OnPickUp;
         }
 
         public void RemoveCallbacks(IShooterActions instance)
@@ -515,5 +544,6 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnADS(InputAction.CallbackContext context);
         void OnWeaponScroll(InputAction.CallbackContext context);
+        void OnPickUp(InputAction.CallbackContext context);
     }
 }

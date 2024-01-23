@@ -1,7 +1,7 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour {
-  // ReSharper disable once MemberCanBePrivate.Global Will use eventually stfu
   public static GameManager instance;
 
   private void Awake() {
@@ -20,4 +20,5 @@ public class GameManager : MonoBehaviour {
   public Camera portalCamera;
   public GunController gunManager;
   public UIManager uiManager;
+  public Volume postProcess;
 }

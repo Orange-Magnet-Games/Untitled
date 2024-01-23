@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 public enum GColor {
   BG, RED, GREEN, YELLOW, BLUE, PURPLE, AQUA, GRAY, ORANGE,

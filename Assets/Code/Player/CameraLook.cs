@@ -6,7 +6,8 @@ public class CameraLook : MonoBehaviour {
   private PlayerController player;
   [HideInInspector] public Vector2 input;
   [SerializeField] private float offset;
-  [SerializeField] [Range(0, 1)] private float sensitivity = 1.0f;
+  [Range(0, 1)] public float sensitivity = 1.0f;
+  private PauseMenu pause;
 
   private void Start() {
     player = GameManager.instance.player;
@@ -15,6 +16,7 @@ public class CameraLook : MonoBehaviour {
     RenderTexture targetTexture = cam.targetTexture;
     targetTexture.width = Screen.width;
     targetTexture.height = Screen.height;
+    pause = GameManager.instance.pauseMenu;
   }
 
   public void OnLook(InputAction.CallbackContext ctx, bool performed) {
@@ -22,6 +24,7 @@ public class CameraLook : MonoBehaviour {
   }
 
   public void Update() {
+    if (pause.paused) return;
     Vector3 eulerAngles = transform.eulerAngles;
 
     eulerAngles -= new Vector3(input.y * sensitivity, -input.x * sensitivity, 0);

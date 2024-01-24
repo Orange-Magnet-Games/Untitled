@@ -25,7 +25,7 @@ MonoBehaviour:
   ammoType: 4
   maxAmmoInMag: 6
   ammoInMag: 6
-  ammoTotal: 1000
+  ammoTotal: 60
   model: {fileID: 1480790989330807512, guid: 1bcca8cfe2c20793db0215fb029452c1, type: 3}
   hipPos: {x: 0, y: 0.15, z: 0.35}
   adsPos: {x: -0.34, y: 0.15, z: 0.35}

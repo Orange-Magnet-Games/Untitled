@@ -49,7 +49,7 @@ public class Crosshair : MonoBehaviour {
 
   [SerializeField, Header("Sizes")] private CrosshairValues values;
 
-  private CrosshairValues Values {
+  public CrosshairValues Values {
     get => values;
     set {
         if (values == value) return;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyWaveController : MonoBehaviour {
     [SerializeField] private EnemyController[] enemies;
 
-    [SerializeField] private int[] waves;
+    public int[] waves;
     private readonly List<EnemyController> activeEnemies = new List<EnemyController>();
 
     [SerializeField] private Transform[] spawnPositions; 
@@ -14,17 +14,25 @@ public class EnemyWaveController : MonoBehaviour {
     [SerializeField] private float enemySpawnRate;
     private float timer;
 
+    [SerializeField] private Animator doorAnim;
+    
     private TMP_Text waveText;
+    private static readonly int Closed = Animator.StringToHash("Closed");
 
+    [HideInInspector] public bool wavesDone, canSpawn;
     private void Start() {
         waveText = GameManager.instance.uiManager.waveText;
     }
 
     private void Update() {
+        
         if (currentWave >= waves.Length) {
             waveText.text = "Waves\nComplete";
+            doorAnim.SetBool(Closed, false);
+            wavesDone = true;
             return;
         }
+        if (!canSpawn) return;
 
         waveText.text = $"Wave: {currentWave+1}/{waves.Length}\nEnemies: {activeEnemies.Count}";
         if (activeEnemies.Count <= 0 && waves[currentWave] <= 0) {

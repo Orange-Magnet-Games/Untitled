@@ -33,7 +33,10 @@ public class GunController : MonoBehaviour {
   private Crosshair crosshair;
 
   [SerializeField] private int[] startingGuns = new int[2];
+  private PauseMenu pause;
   private void Start() {
+    pause = GameManager.instance.pauseMenu;
+    
     for (int i = 0; i < 2; i++) if (startingGuns[i] > -1) { guns[i] = Instantiate(allPossibleGuns[startingGuns[i]]); activeGun = i; }
     
     activeGunModel = Instantiate(guns[activeGun].model, gunTransform).GetComponent<GunModel>();
@@ -127,6 +130,8 @@ public class GunController : MonoBehaviour {
   }
   
   private void Update() {
+    if (pause.paused) return;
+    
     shootTimer -= shootTimer >= 0 ? Time.deltaTime : 0;
     reloadTimer -= reloadTimer >= 0 ? Time.deltaTime : 0;
     accuracy = Mathf.Clamp(accuracy - (accuracy >= guns[activeGun].bestAccuracy ? Time.deltaTime * guns[activeGun].reAccurracySpeed : 0), guns[activeGun].bestAccuracy, aimingDownSights ? guns[activeGun].worstAccuracy / 2 : guns[activeGun].worstAccuracy);

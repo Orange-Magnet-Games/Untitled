@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Pickup : MonoBehaviour {
@@ -6,6 +5,7 @@ public class Pickup : MonoBehaviour {
   public int gun;
   [SerializeField] private Transform gunModel;
   private GunController gunManager;
+  private float timer = 15;
 
   private void Start() {
     gunManager = GameManager.instance.gunManager;
@@ -14,5 +14,10 @@ public class Pickup : MonoBehaviour {
 
   private void OnDrawGizmos() {
     Gizmos.DrawSphere(transform.position, .5f);
+  }
+
+  private void Update() {
+    timer -= Time.deltaTime;
+    if(timer <= 0) Destroy(gameObject);
   }
 }

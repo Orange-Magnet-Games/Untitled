@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour {
   private bool jumping;
 
   public bool isGrounded;
+  
+  private PauseMenu pause;
 
   [HideInInspector] public Rigidbody rb;
   private Camera cam;
@@ -20,6 +22,7 @@ public class PlayerController : MonoBehaviour {
   private void OnDisable() => input.Disable();
 
   private void Start() {
+    pause = GameManager.instance.pauseMenu;
     
     Cursor.visible = false;
     Cursor.lockState = CursorLockMode.Locked;
@@ -44,6 +47,8 @@ public class PlayerController : MonoBehaviour {
   }
 
   private void FixedUpdate() {
+    if (pause.paused) return;
+    
     Vector3 vel = rb.velocity;
     
     Move(ref vel);

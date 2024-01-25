@@ -846,6 +846,7 @@ MonoBehaviour:
   damage: 0
   pickup: {fileID: 1273391850533761822, guid: b3361a08041cea7229fde2d5cb5be66f, type: 3}
   anim: {fileID: 2965190505100888906}
+  guts: {fileID: 7613181649583417664, guid: 8983f101c4bf6a27ab43131793a0621e, type: 3}
 --- !u!195 &4953917430088429075
 NavMeshAgent:
   m_ObjectHideFlags: 0

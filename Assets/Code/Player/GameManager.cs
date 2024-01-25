@@ -3,14 +3,12 @@ using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour {
   public static GameManager instance;
-
-  private void Awake() {
+  private void OnEnable() {
     if (instance) {
       Destroy(gameObject);
     }
     else {
       instance = this;
-      DontDestroyOnLoad(instance);
     }
   }
 
@@ -21,4 +19,5 @@ public class GameManager : MonoBehaviour {
   public UIManager uiManager;
   public Volume postProcess;
   public PauseMenu pauseMenu;
+  public SoundManager soundManager;
 }

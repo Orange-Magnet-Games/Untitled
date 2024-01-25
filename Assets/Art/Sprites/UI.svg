@@ -24,8 +24,8 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
      inkscape:zoom="1.0218084"
-     inkscape:cx="66.059354"
-     inkscape:cy="-76.824583"
+     inkscape:cx="236.34568"
+     inkscape:cy="102.26966"
      inkscape:window-width="2560"
      inkscape:window-height="1361"
      inkscape:window-x="0"
@@ -51,6 +51,17 @@
        inkscape:export-filename="Page 2.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
+    <inkscape:page
+       x="0"
+       y="45.657997"
+       width="152.69856"
+       height="34.713936"
+       id="page3"
+       margin="0"
+       bleed="0"
+       inkscape:export-filename="Page 1.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
   </sodipodi:namedview>
   <defs
      id="defs1" />
@@ -69,5 +80,10 @@
        cx="146.78645"
        cy="190.45448"
        r="63.213581" />
+    <path
+       style="fill:#ffffff;stroke-width:0.264583"
+       d="m 210.00004,308.94811 -25.70148,34.71394 -100.725688,0 -26.271396,-34.71394 z"
+       id="path3"
+       sodipodi:nodetypes="ccccc" />
   </g>
 </svg>

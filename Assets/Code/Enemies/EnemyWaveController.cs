@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class EnemyWaveController : MonoBehaviour {
@@ -20,12 +21,20 @@ public class EnemyWaveController : MonoBehaviour {
     private static readonly int Closed = Animator.StringToHash("Closed");
 
     [HideInInspector] public bool wavesDone, canSpawn;
+    public NavMeshSurface surface;
+    private float navmeshTimer = 0.5f;
+
     private void Start() {
         waveText = GameManager.instance.uiManager.waveText;
+        surface = GetComponent<NavMeshSurface>();
     }
 
     private void Update() {
-        
+        navmeshTimer -= navmeshTimer >= 0 ? Time.deltaTime : 0;
+        if (!surface.navMeshData && navmeshTimer < 0f) {
+            surface.RemoveData();
+            surface.BuildNavMesh();
+        }
         if (currentWave >= waves.Length) {
             waveText.text = "Waves\nComplete";
             doorAnim.SetBool(Closed, false);

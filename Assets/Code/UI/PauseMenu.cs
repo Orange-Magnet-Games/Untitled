@@ -104,7 +104,8 @@ public class PauseMenu : MonoBehaviour {
   public void Sensitivity(float value) {
     GameManager.instance.mainCamera.GetComponent<CameraLook>().sensitivity = value;
   }
-  public void Volume(float value) {
-    
-  }
+
+  public void Volume(float value) => GameManager.instance.soundManager.SetVolume(value);
+
+  public void Exit() => Application.Quit();
 }

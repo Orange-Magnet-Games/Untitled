@@ -76,6 +76,7 @@ MonoBehaviour:
   damage: 2
   pickup: {fileID: 1273391850533761822, guid: b3361a08041cea7229fde2d5cb5be66f, type: 3}
   anim: {fileID: 4404906089568917328}
+  guts: {fileID: 7613181649583417664, guid: 8983f101c4bf6a27ab43131793a0621e, type: 3}
 --- !u!1 &2846356193646190734
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,7 +965,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0

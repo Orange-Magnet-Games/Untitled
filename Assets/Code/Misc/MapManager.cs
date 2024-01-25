@@ -14,11 +14,11 @@ public class MapManager : MonoBehaviour {
   
   private void Start() {
     currentMap = CreateMap();
-    roomCount++;
     nextMap = CreateMap();
     currentMap.enemyWaves.canSpawn = true;
     nextMap.enemyWaves.canSpawn = false;
     ui = GameManager.instance.uiManager;
+    ui.roomCountText.text = $"Rooms Cleared: {roomCount}";
   }
 
   private void Update() {
@@ -29,7 +29,7 @@ public class MapManager : MonoBehaviour {
     currentMap.enemyWaves.canSpawn = true;
     nextMap = CreateMap();
     nextMap.enemyWaves.canSpawn = false;
-
+    ui.roomCountText.text = $"Rooms Cleared: {roomCount}";
   }
 
   private MapReporter CreateMap() {

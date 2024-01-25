@@ -1,5 +1,8 @@
+using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GunController : MonoBehaviour {
   private PlayerController player;
@@ -20,7 +23,17 @@ public class GunController : MonoBehaviour {
   private GunUI uiGuns;
 
   [SerializeField] private float pickupRange;
-  
+
+  [Serializable]
+  private struct ClipGun {
+    public Gun.AmmoType gun;
+    public AudioClip clip;
+  }
+
+  [SerializeField] private ClipGun[] gunSounds;
+
+  [SerializeField] private AudioClip[] reloadSounds;
+  private SoundManager soundManager;
   
   private float accuracy;
   private bool shooting, aimingDownSights;
@@ -36,6 +49,7 @@ public class GunController : MonoBehaviour {
   private PauseMenu pause;
   private void Start() {
     pause = GameManager.instance.pauseMenu;
+    soundManager = GameManager.instance.soundManager;
     
     for (int i = 0; i < 2; i++) if (startingGuns[i] > -1) { guns[i] = Instantiate(allPossibleGuns[startingGuns[i]]); activeGun = i; }
     
@@ -164,22 +178,20 @@ public class GunController : MonoBehaviour {
       switch (true) {
         case true when reloadTimer > guns[activeGun].reloadTime * 0.75f: {
           gunTransform.localRotation = Quaternion.Lerp(gunTransform.localRotation, Quaternion.Euler(-90, 0, 0), 10 * Time.deltaTime / guns[activeGun].reloadTime * 2);
-          gunTransform.localPosition = Vector3.Lerp(gunTransform.localPosition, guns[activeGun].hipPos + Vector3.forward * .5f + occlusionOffset, 10 * guns[activeGun].reloadTime * Time.deltaTime / guns[activeGun].reloadTime * 2);
-          break;
-        }
+          gunTransform.localPosition = Vector3.Lerp(gunTransform.localPosition, guns[activeGun].hipPos + Vector3.forward * .5f + occlusionOffset, 10 * guns[activeGun].reloadTime * Time.deltaTime / guns[activeGun].reloadTime * 2);      
+        } break;
         case true when reloadTimer > guns[activeGun].reloadTime * 0.5f: {
+          if (reloadTimer > guns[activeGun].reloadTime * 0.6f && !soundManager.SoundPlaying(reloadSounds[0])) soundManager.PlaySound(reloadSounds[0]);
           gunTransform.localPosition = Vector3.Lerp(gunTransform.localPosition, guns[activeGun].hipPos + Vector3.down * .5f + Vector3.forward * .5f + occlusionOffset, 10 * Time.deltaTime / guns[activeGun].reloadTime * 2);
-          break;
-        }
+        } break;
         case true when reloadTimer > guns[activeGun].reloadTime * 0.25f: {
+          if (reloadTimer > guns[activeGun].reloadTime * 0.4f && !soundManager.SoundPlaying(reloadSounds[1])) soundManager.PlaySound(reloadSounds[1]);
           gunTransform.localPosition = Vector3.Lerp(gunTransform.localPosition, guns[activeGun].hipPos + Vector3.forward * .5f, 10 * Time.deltaTime / guns[activeGun].reloadTime * 2);
-          break;
-        }
+        } break;
         case true when reloadTimer > 0: {
           gunTransform.localRotation = Quaternion.Lerp(gunTransform.localRotation, Quaternion.Euler(0, 0, 0), 10 * Time.deltaTime / guns[activeGun].reloadTime * 2);
           gunTransform.localPosition = Vector3.Lerp(gunTransform.localPosition, guns[activeGun].hipPos + occlusionOffset, 10 * Time.deltaTime / guns[activeGun].reloadTime * 2);
-          break;
-        }
+        } break;
       }
     }
   }
@@ -195,6 +207,7 @@ public class GunController : MonoBehaviour {
     
     Transform tr = transform;
     
+    soundManager.PlaySound(gunSounds.First(x => x.gun == guns[activeGun].ammoType).clip);
     
     for (int i = 0; i < guns[activeGun].bulletsPerShot; i++) {
       if (Physics.Raycast(camTransform.position, Quaternion.Euler(new Vector3(Random.Range(-accuracy, accuracy), Random.Range(-accuracy, accuracy), Random.Range(-accuracy, accuracy))) * camTransform.forward, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("LevelGeom", "EnemyBody"))) {
@@ -204,7 +217,6 @@ public class GunController : MonoBehaviour {
         shootRotation = tr.localRotation;
 
         Transform ptr = particles.transform;
-      
 
         if (hit.transform.CompareTag("Enemy")) { // hit enemy
           EnemyPartIdentifier enemy = hit.transform.GetComponent<EnemyPartIdentifier>();
@@ -227,9 +239,6 @@ public class GunController : MonoBehaviour {
         shootRotation = tr.localRotation;
         accuracy += guns[activeGun].inaccuracySpeed;
       }
-      
-      
-      
     }
 
     Vector3 camAngles = camTransform.eulerAngles;
